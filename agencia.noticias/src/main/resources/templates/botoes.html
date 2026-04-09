@@ -1,0 +1,12 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="pt-BR">
+<body>
+
+    <a th:fragment="botaoVoltar(link, texto)" 
+       th:href="@{${link}}" 
+       th:text="${texto}" 
+       class="text-gray-600 hover:text-blue-900 hover:underline font-medium transition">
+    </a>
+
+</body>
+</html>

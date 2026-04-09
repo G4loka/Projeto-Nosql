@@ -1,0 +1,51 @@
+<header th:fragment="meuCabecalho" class="bg-blue-900 text-white shadow-md">
+    
+    <div class="max-w-7xl mx-auto flex items-center justify-between px-6 py-4">
+        
+        <!-- Logo / Título -->
+        <h1 class="text-2xl md:text-3xl font-bold flex items-center gap-2">
+            📰 Agência de Notícias Web
+        </h1>
+
+        <!-- Menu horizontal -->
+        <nav class="flex flex-wrap gap-6 text-sm md:text-base font-medium">
+            
+            <a href="cadastrarAutor" class="menu-top">Cadastrar Autor</a>
+            <a href="cadastrarNoticia" class="menu-top">Cadastrar Notícia</a>
+            <a href="cadastrarAssunto" class="menu-top">Cadastrar Assunto</a>
+            <a href="listarNoticias" class="menu-top">Listar Notícias</a>
+            <a href="listarAutor" class="menu-top">Listar Autores</a>
+            <a href="listarAssunto" class="menu-top">Listar Assuntos</a>
+
+        </nav>
+
+    </div>
+
+</header>
+
+<style>
+    .menu-top {
+        position: relative;
+        transition: 0.2s;
+    }
+
+    .menu-top:hover {
+        color: #93c5fd; /* azul claro */
+    }
+
+    /* Linha animada embaixo (efeito premium 😏) */
+    .menu-top::after {
+        content: "";
+        position: absolute;
+        width: 0%;
+        height: 2px;
+        bottom: -4px;
+        left: 0;
+        background-color: #93c5fd;
+        transition: width 0.3s ease;
+    }
+
+    .menu-top:hover::after {
+        width: 100%;
+    }
+</style>

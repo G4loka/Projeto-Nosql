@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="pt-BR">
+<head>
+<<<<<<< HEAD
+  <meta charset="UTF-8">
+  <title>Editar Notícia</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="bg-gray-100 min-h-screen flex items-center justify-center">
+
+  <div class="bg-white shadow-lg rounded-2xl p-8 w-full max-w-2xl">
+    <h1 class="text-2xl font-bold mb-6">Editar Notícia</h1>
+
+    <form method="POST" th:action="@{editarNoticia(idNoticia=${noticia.id})}" class="space-y-4">
+
+      <!-- Autor -->
+      <div>
+        <label>Nome do autor:</label>
+        <input type="text" name="autor.nome" th:value="${noticia.autor?.nome}" class="w-full border rounded p-2" />
+      </div>
+
+      <div>
+        <label>E-mail do autor:</label>
+        <input type="email" name="autor.email" th:value="${noticia.autor?.email}" class="w-full border rounded p-2" />
+      </div>
+
+      <div>
+        <label>Data de nascimento do autor:</label>
+        <input type="date" name="autor.dataNascimento" th:value="${noticia.autor?.dataNascimento}" class="w-full border rounded p-2" />
+      </div>
+
+      <!-- Notícia -->
+      <div>
+        <label>Título:</label>
+        <input type="text" name="titulo" th:value="${noticia.titulo}" class="w-full border rounded p-2" />
+      </div>
+
+      <div>
+        <label>Assunto:</label>
+        <input type="text" name="assunto.nome" th:value="${noticia.assunto?.nome}" class="w-full border rounded p-2" />
+      </div>
+
+      <div>
+        <label>Conteúdo:</label>
+        <textarea name="conteudo" rows="8" class="w-full border rounded p-2" th:text="${noticia.conteudo}"></textarea>
+      </div>
+
+      <!-- Status -->
+      <div>
+        <label>Status:</label>
+        <select name="status" class="w-full border rounded p-2">
+          <option value="">-- selecione --</option>
+          <option th:each="st : ${T(br.edu.utfpr.td.tsi.agencia.noticias.modelo.Status).values()}"
+                  th:value="${st.name()}"
+                  th:text="${st.descricao}"
+                  th:selected="${noticia.status != null and st.name() == noticia.status.name()}">
+          </option>
+        </select>
+      </div>
+
+      <!-- Botão -->
+      <div class="text-center pt-4">
+        <input type="submit" value="Salvar alterações" class="px-4 py-2 bg-blue-700 text-white rounded hover:bg-blue-800" />
+      </div>
+    </form>
+  </div>
+
+</body>
+</html>
+=======
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Editar Notícia | Agência de Notícias Web</title>
+<script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="bg-gray-100 min-h-screen flex flex-col">
+
+	<div th:replace="~{cabecalho :: meuCabecalho}"></div>
+
+	<main class="flex-grow flex flex-col items-center justify-center px-4 py-8">
+		<div class="bg-white shadow-lg rounded-2xl p-8 w-full max-w-2xl">
+			<h2 class="text-2xl font-semibold text-blue-900 text-center mb-6">
+				Editar Notícia
+			</h2>
+
+			<form method="POST" th:action="@{editarNoticia(idNoticia=${noticia.id})}" class="space-y-5">
+
+				<div>
+					<label for="autor" class="block text-gray-700 font-medium mb-1">Autor da Notícia</label> 
+					<select id="autor" name="autor.id" class="w-full p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:outline-none" required>
+						<option value="">Selecione o autor</option>
+						<option th:each="autor : ${autores}" th:value="${autor.id}" th:text="${autor.nome}" th:selected="${noticia.autor != null and autor.id == noticia.autor.id}"></option>
+					</select>
+				</div>
+
+				<div>
+					<label for="titulo" class="block text-gray-700 font-medium mb-1">Título</label> 
+					<input type="text" id="titulo" name="titulo" th:value="${noticia.titulo}" class="w-full p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:outline-none" required>
+				</div>
+
+				<div>
+					<label for="assunto" class="block text-gray-700 font-medium mb-1">Assunto</label> 
+					<select id="assunto" name="assunto.id" class="w-full p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:outline-none" required>
+						<option value="">Selecione o assunto</option>
+						<option th:each="assunto : ${assuntos}" th:value="${assunto.id}" th:text="${assunto.nome}" th:selected="${noticia.assunto != null and assunto.id == noticia.assunto.id}"></option>
+					</select>
+				</div>
+
+				<div>
+					<label for="conteudo" class="block text-gray-700 font-medium mb-1">Conteúdo da Notícia</label>
+					<textarea id="conteudo" name="conteudo" rows="8" class="w-full p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:outline-none resize-y" th:text="${noticia.conteudo}" required></textarea>
+				</div>
+
+				<div class="flex justify-between pt-4">
+					<a href="listarNoticias" class="text-gray-600 hover:underline">← Cancelar</a>
+					<button type="submit" class="bg-blue-900 text-white px-6 py-2 rounded-xl shadow-md hover:bg-blue-800 transition">
+						Salvar Alterações
+					</button>
+				</div>
+			</form>
+		</div>
+	</main>
+
+	<footer class="bg-gray-200 text-gray-700 text-center py-4 text-sm mt-auto">
+		© 2025 Agência de Notícias Web. Todos os direitos reservados.
+	</footer>
+
+</body>
+</html>
+>>>>>>> 9f4e6ec (atualizando projeto)

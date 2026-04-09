@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Notícias Cadastradas | Agência de Notícias Web</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script src="https://unpkg.com/lucide@latest"></script>
+</head>
+<body class="bg-gray-100 min-h-screen flex flex-col">
+
+  <!-- HEADER -->
+  <div th:replace="~{cabecalho :: meuCabecalho}"></div>
+
+  <!-- CONTEÚDO PRINCIPAL -->
+  <main class="flex-grow px-4 py-8 max-w-6xl mx-auto w-full">
+    <h2 class="text-3xl font-semibold text-blue-900 mb-6 text-center">
+      Notícias Cadastradas
+    </h2>
+
+    <div class="overflow-x-auto bg-white shadow-lg rounded-2xl">
+      <table class="min-w-full border-collapse">
+        <thead class="bg-blue-900 text-white">
+          <tr>
+            <th class="px-4 py-3 text-left font-medium">Autor</th>
+            <th class="px-4 py-3 text-left font-medium">Título</th>
+            <th class="px-4 py-3 text-left font-medium">Assunto</th>
+            <th class="px-4 py-3 text-left font-medium">Conteúdo</th>
+            <th class="px-4 py-3 text-left font-medium">Status</th>
+            <th class="px-4 py-3 text-center font-medium">Ações</th>
+          </tr>
+        </thead>
+
+        <tbody>
+          <tr th:each="doc : ${noticias}" class="hover:bg-gray-50 border-b">
+            <td class="px-4 py-3" th:text="${doc.autor.nome}"></td>
+            <td class="px-4 py-3 font-semibold" th:text="${doc.titulo}"></td>
+            <td class="px-4 py-3" th:text="${doc.assunto.nome}"></td>
+            <td class="px-4 py-3 text-gray-700" th:text="${doc.conteudo}"></td>
+           <td class="px-4 py-3 text-black-700" th:text="${doc.statusDescricao}"></td>
+            <td class="px-4 py-3 flex justify-center gap-3">
+              <a th:href="@{editarNoticia(idNoticia=${doc.id})}" 
+                 class="text-blue-700 hover:text-blue-900 transition" title="Editar">
+                <i data-lucide="edit" class="w-5 h-5"></i>
+              </a>
+              <a th:href="@{removerNoticia(idNoticia=${doc.id})}" 
+                 class="text-red-600 hover:text-red-800 transition" title="Remover">
+                <i data-lucide="trash-2" class="w-5 h-5"></i>
+              </a>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </main>
+
+  <!-- FOOTER -->
+  <footer class="bg-gray-200 text-gray-700 text-center py-4 text-sm">
+    © 2025 Agência de Notícias Web. Todos os direitos reservados.
+  </footer>
+
+  <script>
+    lucide.createIcons();
+  </script>
+</body>
+</html>

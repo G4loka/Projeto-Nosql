@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Cadastrar Notícia | Agência de Notícias Web</title>
+<script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="bg-gray-100 min-h-screen flex flex-col">
+
+	<!-- HEADER -->
+	<div th:replace="~{cabecalho :: meuCabecalho}"></div>
+
+	<!-- CONTEÚDO PRINCIPAL -->
+	<main class="flex-grow flex flex-col items-center justify-center px-4">
+		<div class="bg-white shadow-lg rounded-2xl p-8 w-full max-w-2xl">
+			<h2 class="text-2xl font-semibold text-blue-900 text-center mb-6">
+				Cadastro de Notícia</h2>
+
+			<form method="POST" action="cadastrarNoticia" class="space-y-5">
+
+				<!-- Autor -->
+				<div>
+					<label for="autor" class="block text-gray-700 font-medium mb-1">
+						Autor da Notícia </label> <select id="autor" name="autor.id"
+						class="w-full p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:outline-none"
+						required>
+						<option value="">Selecione o autor</option>
+						<option th:each="autor : ${autores}" th:value="${autor.id}"
+							th:text="${autor.nome}"></option>
+					</select>
+				</div>
+
+				<!-- Título -->
+				<div>
+					<label for="titulo" class="block text-gray-700 font-medium mb-1">
+						Título </label> <input type="text" id="titulo" name="titulo"
+						class="w-full p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:outline-none"
+						required>
+				</div>
+
+				<!-- Assunto -->
+				<div>
+					<label for="assunto" class="block text-gray-700 font-medium mb-1">
+						Assunto </label> <select id="assunto" name="assunto.id"
+						class="w-full p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:outline-none"
+						required>
+						<option value="">Selecione o assunto</option>
+						<option th:each="assunto : ${assuntos}" th:value="${assunto.id}"
+							th:text="${assunto.nome}"></option>
+					</select>
+				</div>
+
+				<div>
+					<label for="status" class="block text-gray-700 font-medium mb-1">
+						Status </label> <select id="status" name="status"
+						class="w-full p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:outline-none"
+						required>
+						<option value="">Selecione o status</option>
+						<option value="PD">Em produção</option>
+						<option value="PB">Publicada</option>
+						<option value="C">Cancelada</option>
+					</select>
+				</div>
+				<!-- Conteúdo -->
+				<div>
+					<label for="conteudo" class="block text-gray-700 font-medium mb-1">
+						Conteúdo da Notícia </label>
+					<textarea id="conteudo" name="conteudo" rows="8"
+						class="w-full p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:outline-none resize-y"
+						required></textarea>
+				</div>
+
+				<!-- Botões -->
+				
+				<!-- voltar -->
+				<a th:replace="~{botoes :: botaoVoltar('/', '← Voltar')}"></a>
+				
+				<!-- cadastro -->
+					<button type="submit"
+						class="bg-blue-900 text-white px-6 py-2 rounded-xl shadow-md hover:bg-blue-800 transition">
+						Cadastrar</button>
+				</div>
+			</form>
+		</div>
+	</main>
+
+	<!-- FOOTER -->
+	<footer class="bg-gray-200 text-gray-700 text-center py-4 text-sm">
+		© 2025 Agência de Notícias Web. Todos os direitos reservados. </footer>
+
+</body>
+</html>
